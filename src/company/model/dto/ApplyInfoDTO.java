@@ -3,17 +3,17 @@ package company.model.dto;
 public class ApplyInfoDTO {
 	private int applicantNum;
 	private String memberId;
-	private String companyName;
+	private String wantedNum;
 	private String applyDate;
 	
 	public ApplyInfoDTO() {}
-	public ApplyInfoDTO(int applicantNum, String memberId, String companyName, String applyDate) {
+	public ApplyInfoDTO(int applicantNum, String memberId, String wantedNum, String applyDate) {
 		this.applicantNum = applicantNum;
 		this.memberId = memberId;
-		this.companyName = companyName;
+		this.wantedNum = wantedNum;
 		this.applyDate = applyDate;
 	}
-
+	
 	public int getApplicantNum() {
 		return applicantNum;
 	}
@@ -26,11 +26,11 @@ public class ApplyInfoDTO {
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
 	}
-	public String getCompanyName() {
-		return companyName;
+	public String getWantedNum() {
+		return wantedNum;
 	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setWantedNum(String wantedNum) {
+		this.wantedNum = wantedNum;
 	}
 	public String getApplyDate() {
 		return applyDate;
@@ -41,8 +41,7 @@ public class ApplyInfoDTO {
 	
 	@Override
 	public String toString() {
-		return "ApplyInfoDTO [applicantNum=" + applicantNum + ", memberId=" + memberId + ", companyName=" + companyName
+		return "ApplyInfoDTO [applicantNum=" + applicantNum + ", memberId=" + memberId + ", wantedNum=" + wantedNum
 				+ ", applyDate=" + applyDate + "]";
 	}
-
 }

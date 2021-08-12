@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 import company.model.dao.CompanyInfoDAO;
 import company.model.dao.MemberDAO;
 import company.model.dto.CompanyInfoDTO;
-import company.model.dto.MemberDTO;
+import company.model.dto.MemberInfoDTO;
 import company.view.EndView;
 
 public class Controller {
@@ -34,7 +34,7 @@ public class Controller {
 	 * 
 	 * @param newMember
 	 */
-	public static boolean addMember(MemberDTO member) {
+	public static boolean addMember(MemberInfoDTO member) {
 		boolean result = false;
 	
 		try{
@@ -52,12 +52,12 @@ public class Controller {
 	 * 키보드로 정보를 입력해서 회원 정보 추가 
 	 * 
 	 */
-	public static MemberDTO insertMember() {
+	public static MemberInfoDTO insertMember() {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			StringTokenizer st = new StringTokenizer(in.readLine(),"/");;
 			
-			MemberDTO newMember = new MemberDTO();
+			MemberInfoDTO newMember = new MemberInfoDTO();
 			newMember.setMemberId(st.nextToken());
 			newMember.setMemberName(st.nextToken());
 			newMember.setBirthDate(st.nextToken());
