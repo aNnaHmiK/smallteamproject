@@ -22,7 +22,6 @@ DROP TABLE member cascade constraint;
 -- 지원 정보
 DROP TABLE apply_info cascade constraint;
 
-
 CREATE TABLE company_info (
        company_name          VARCHAR2(20)  PRIMARY KEY,
        founder_name          	VARCHAR2(20) NOT NULL,
@@ -76,6 +75,8 @@ CREATE TABLE  apply_info (
        company_name          	VARCHAR2(20) NOT NULL,
        apply_date         	VARCHAR2(20) NOT NULL
 );
+
+
 
 ALTER TABLE apply_info  ADD FOREIGN KEY (member_id) REFERENCES member  (member_id);
 ALTER TABLE apply_info ADD FOREIGN KEY (company_name)  REFERENCES company_info  (company_name);

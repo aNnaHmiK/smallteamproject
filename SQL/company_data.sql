@@ -1,9 +1,3 @@
--- activist insert[회사 정보 저장]
-insert into company_info values('삼성전자', '이병철', '1969', '대한민국',5000);
-insert into company_info values('엘지전자', '구인회', '1958','대한민국',4800);
-insert into company_info values('애플', '스티브잡스', '1976','미국',5500);
-insert into company_info values('카카오', '김범수', '1938','대한민국',5300);
-
 -- recipient insert[경영 정보 저장]
 insert into management_info values('삼성전자','465조','78500','갤럭시');
 insert into management_info values('엘지전자','465조','155500','엘지폰');
@@ -37,14 +31,23 @@ insert into country_info values('중국','중국어',2);
 -- probono_project insert[회원 정보 저장]
 insert into member values('a01','박세은','19900804','경영학과');
 insert into member values('b02','김한나','19991223','화학과');
-insert into member values('c03','임우송','19920405','경영학과);
+insert into member values('c03','임우송','19920702','물리학과');
 insert into member values('d04','방지원','19951102','컴퓨터공학과');
 
+-- activist insert[회사 정보 저장]
+insert into company_info values('삼성전자', '이병철', '1969', '대한민국',5000);
+insert into company_info values('엘지전자', '구인회', '1958','대한민국',4800);
+insert into company_info values('애플', '스티브잡스', '1976','미국',5500);
+insert into company_info values('카카오', '김범수', '1938','대한민국',5300);
+
 -- probono_project insert[지원 정보 저장]
-insert into apply_info values(87,'a01','삼성전자','2021-08-02');
-insert into apply_info values(23,'b02','엘지전자','2021-07-12');
-insert into apply_info values(73,'c03','애플','2021-05-03');
-insert into apply_info values(14,'d04','카카오','2021-08-06');
+insert into apply_info values(11,'a01','삼성전자','2021-08-02');
+insert into apply_info values(12,'b02','엘지전자','2021-07-12');
+insert into apply_info values(13,'c03','애플','2021-08-06');
+insert into apply_info values(14,'d04','카카오','2021-07-23');
+
+
+
 
 commit;
 
