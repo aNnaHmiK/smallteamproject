@@ -18,7 +18,6 @@ public class StartView {
 	
 		//내가 지원한 회사 정보 출력
 		
-		//test
 		
 	}
 	
