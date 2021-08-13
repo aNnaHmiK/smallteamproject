@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import company.controller.exception.NotExistException;
 import company.model.dao.ApplyInfoDAO;
 import company.model.dao.DeptInfoDAO;
 import company.model.dao.MemberInfoDAO;
@@ -35,13 +36,9 @@ public class Companyservice {
 	
 		// 1.회원가입 	
 		public boolean memberSignUpInputInput() throws IOException, SQLException {
-//			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-			//스타트뷰에서 회원가입 메소드를 실행 -> 컨트롤러에서 서비스에 input기능 요청 -> 서비스에서 input 받고 DAO에 insert 요청 
-			//DAO에서 insert시도 후에 성공하면 1, 실패하면 2를 반환한다 -> 서비스는 반환받은 값을 다시 컨트롤러에 전달 
 			boolean insertResult = false;
 			System.out.println("이 양식에 따라서 작성해 주세요");
 			System.out.println("아이디/이름/생년월일/전공학과/이메일/희망직무");
-//			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 			
 			try {
 				StringTokenizer st = new StringTokenizer(start.scan.next(),"/");
@@ -52,12 +49,10 @@ public class Companyservice {
 				newMember.setBirthDate(st.nextToken());
 				newMember.setMajor(st.nextToken());
 				newMember.setEmail(st.nextToken());
-				//input을 string으로 받기 때문에, int로 형변환 
+				
 				int DeptHope = Integer.parseInt(st.nextToken());
 				newMember.setDeptHope(DeptHope);
 				
-				//입력받은 MemberInfoDTO를 MemberInfoDAO로 보내서 insert시도
-				//insert시도 후에 결과를 true나 false로 받아온다
 				insertResult = MemberInfoData.addMemberInfo(newMember);
 				
 			}finally {
@@ -67,7 +62,7 @@ public class Companyservice {
 		}
 		
 		// 2.회원정보 수정
-		public boolean memberUpUpdate() throws SQLException {
+		public boolean memberUpUpdate() throws SQLException, NotExistException {
 			boolean updateResult = false;
 			System.out.println("아이디를 입력해주세요");
 			MemberInfoDTO myInfo = new MemberInfoDTO();
@@ -77,6 +72,10 @@ public class Companyservice {
 				String myId = (st.nextToken());
 				
 				myInfo = MemberInfoData.getMemberInfo(myId);
+				
+				if (myInfo == null) {
+					throw new NotExistException();
+				}
 				EndView.oneView(myInfo);
 				
 				System.out.println("수정할 정보를 입력해주세요");
@@ -103,7 +102,7 @@ public class Companyservice {
 		}
 		
 		// 3.나의 회원정보 검색
-		public MemberInfoDTO mymyMemberInfo() throws SQLException {
+		public MemberInfoDTO mymyMemberInfo() throws SQLException, NotExistException {
 			System.out.println("본인의 아이디를 입력해주세요");
 			MemberInfoDTO myInfo = new MemberInfoDTO();
 			
@@ -115,6 +114,9 @@ public class Companyservice {
 				
 			}finally {
 				start.scan.close();
+			}
+			if(myInfo == null) {
+				throw new NotExistException();
 			}
 			return myInfo;
 			
@@ -147,7 +149,7 @@ public class Companyservice {
 		}
 		
 		// 5.지원정보 수정
-		public boolean applyUpUpdate() throws SQLException {
+		public boolean applyUpUpdate() throws SQLException, NotExistException {
 			boolean updateResult = false;
 			ApplyInfoDTO myInfo = new ApplyInfoDTO();
 			
@@ -158,6 +160,10 @@ public class Companyservice {
 				String myId = st.nextToken();
 				
 				myInfo = ApplyInfoData.getApplyInfo(myId);
+				
+				if (myInfo == null) {
+					throw new NotExistException();
+				}
 				EndView.oneView(myInfo);
 				
 				System.out.println("지원할 채용공고 번호를 입력해주세요");
@@ -176,7 +182,7 @@ public class Companyservice {
 		
 		
 		// 6.나의 지원정보 검색
-		public ApplyInfoDTO mymyApplyInfo() throws SQLException {
+		public ApplyInfoDTO mymyApplyInfo() throws SQLException, NotExistException {
 			System.out.println("아이디를 입력해주세요");
 			ApplyInfoDTO myInfo = new ApplyInfoDTO();
 			
@@ -188,6 +194,9 @@ public class Companyservice {
 				
 			}finally {
 				start.scan.close();
+			}
+			if(myInfo == null) {
+				throw new NotExistException();
 			}
 			return myInfo;
 			

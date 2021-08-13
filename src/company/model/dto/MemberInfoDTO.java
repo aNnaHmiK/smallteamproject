@@ -16,7 +16,6 @@ public class MemberInfoDTO {
 		this.birthDate = birthDate;
 		this.major = major;
 		this.email = email;
-//		this.deptHope = deptHope;
 		this.deptHope = deptHope;
 	}
 	
@@ -56,12 +55,7 @@ public class MemberInfoDTO {
 	public void setDeptHope(int deptHope) {
 		this.deptHope = deptHope;
 	}
-//	public String getDeptHope() {
-//		return deptHope;
-//	}
-//	public void setDeptHope(int deptHope) {
-//		this.deptHope = deptHope;
-//	}
+	
 	
 	@Override
 	public String toString() {

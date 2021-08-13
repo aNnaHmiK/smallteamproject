@@ -16,11 +16,7 @@ public class StartView {
 				+ "\n1.회원가입 \n2.회원정보 수정\n3.나의 회원정보 검색\n4.지원하기\n5.지원정보 수정"
 				+ "\n6.나의 지원정보 검색\n7.채용정보 전체검색\n8.직무정보 전체검색\n0.종료하기\n===================");	
 
-		try{
-			number = instance.scan.nextInt();
-		}
-		finally {
-		}
+		number = instance.scan.nextInt();
 	}
 	
 	private StartView() {}

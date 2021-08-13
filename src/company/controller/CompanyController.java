@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.logging.Logger;
 
+import company.controller.exception.NotExistException;
 import company.model.dto.DeptInfoDTO;
-import company.model.dto.MemberInfoDTO;
 import company.model.dto.WantedInfoDTO;
 import company.service.Companyservice;
 import company.view.EndView;
 import company.view.StartView;
+
+import org.apache.log4j.Logger;
+
 
 public class CompanyController {
 		
@@ -19,7 +21,7 @@ public class CompanyController {
 		
 		private static Companyservice service = Companyservice.getInstance();
 		
-		static Logger logger = Logger.getLogger("test");
+		static Logger logger = Logger.getLogger("controllerLog");
 		
 		private CompanyController() {}
 
@@ -37,6 +39,7 @@ public class CompanyController {
 				
 				if (inputResult == true) {
 					EndView.messageView("회원가입 성공");
+					logger.info("새로운 회원 가입했습니다");
 				}else {
 					EndView.messageView("회원가입 실패. 입력정보를 확인해주세요");
 				}
@@ -70,6 +73,9 @@ public class CompanyController {
 			}catch (SQLException e) {
 				e.printStackTrace();
 				EndView.messageView("회원정보 수정 실패. SQL문 에러");
+			}catch (NotExistException e) {
+				e.printStackTrace();
+				EndView.showError("회원정보 수정 실패. NotExistException 에러");
 			}	
 		}
 
@@ -80,9 +86,11 @@ public class CompanyController {
 			}catch (SQLException e) {
 				e.printStackTrace();
 				EndView.showError("회원정보 검색 실패. SQL문 에러");
+			}catch (NotExistException e) {
+				e.printStackTrace();
+				EndView.showError("회원정보 검색 실패. NotExistException 에러");
 			}
 		}
-		
 		
 		// 4.지원하기
 		public void applyInput() {
@@ -93,6 +101,7 @@ public class CompanyController {
 				
 				if (inputResult == true) {
 					EndView.messageView("지원정보 입력 성공");
+					logger.info("새로운 이력서가 올라왔습니다");
 				}else {
 					EndView.messageView("지원정보 실패. 입력정보를 확인해주세요");
 				}
@@ -126,17 +135,22 @@ public class CompanyController {
 			}catch (SQLException e) {
 				e.printStackTrace();
 				EndView.messageView("지원정보 수정 실패. SQL문 에러");
+			}catch (NotExistException e) {
+				e.printStackTrace();
+				EndView.showError("지원정보 검색 실패. NotExistException 에러");
 			}	
 		}
-		
 		
 		// 6.나의 지원정보 검색
 		public void myApplyInfo() {
 			try {
-				EndView.oneView(service.mymyApplyInfo());
+					EndView.oneView(service.mymyApplyInfo());
 			}catch (SQLException e) {
 				e.printStackTrace();
 				EndView.showError("지원정보 검색 실패. SQL문 에러");
+			}catch (NotExistException e) {
+				e.printStackTrace();
+				EndView.showError("지원정보 검색 실패. NotExistException 에러");
 			}
 		}
 	
@@ -154,7 +168,6 @@ public class CompanyController {
 				EndView.messageView("채용정보 검색 실패. SQL문 에러");
 				e.printStackTrace();
 			}
-			
 		}
 		
 		// 8.직무정보 전체검색
@@ -163,6 +176,7 @@ public class CompanyController {
 				ArrayList<DeptInfoDTO> AllDeptList = service.deptList();
 				if(AllDeptList.size() !=0) {
 					EndView.AllListView(AllDeptList);
+					logger.info("직무정보 검색했습니다");
 				}else {
 					EndView.messageView("직무 정보가 아무것도 존재하지 않습니다:(");
 				}
@@ -170,7 +184,6 @@ public class CompanyController {
 				EndView.messageView("직무정보 검색 실패. SQL문 에러");
 				e.printStackTrace();
 			}
-			
 		}
 
 		// 0. 종료

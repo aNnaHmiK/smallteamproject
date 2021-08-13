@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EndView {
 	
-	//모든 구인정보  출력 
+	//모든 정보  출력 
 	public static void AllListView(ArrayList allcompany){ 
 		if(allcompany != null) {
 			int length = allcompany.size();
@@ -21,23 +21,12 @@ public class EndView {
 		}
 	}
 	
+	
 	//특정정보 출력 
 	public static void oneView(Object info){
 		System.out.println(info);		
 	}
 
-	
-	
-//	//update 성공, 실패 시 메시지출력하기  
-//	public static void updateView(boolean result, String id) {
-//		if(result == true) {
-//			System.out.println("요청하신" + id + " 수정 완료");
-//			
-//		}else {
-//			System.out.println("요청하신" + id + " 수정 실패, 회사이름 재확인하세요");
-//		}
-//	}
-	
 	
 	//예외 상황 출력
 	public static void showError(String message){
